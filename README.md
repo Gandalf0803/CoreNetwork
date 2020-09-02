@@ -11,14 +11,14 @@ xxx
 2. Create file API Service in module feature
 ```kotlin
 interface ApiService {
-  // format for call api with old server(server mobile service) and format requests is SOAP Xml
+  // format for call api with SOAP API(old server mobile service)
   @POST("ServiceAPI")
-  suspend fun getListServicesMobileMoney(@Body requestBody: RequestBody): GenericXmlResponse<MMListServicesTest>
+  suspend fun getListServicesMMCoroutine(@Body requestBody: RequestBody): GenericXmlResponse<MMListServicesTest>
 
   @POST("ServiceAPI")
-  fun getListServicesMobileMoneyRx(@Body requestBody: RequestBody): Observable<GenericXmlResponse<MMListServicesTest>>
+  fun getListServicesMMRx(@Body requestBody: RequestBody): Observable<GenericXmlResponse<MMListServicesTest>>
 
-  // format for call api with new server(server CDCN) and requests is object json
+  // format for call api with REST API(server CDCN)
   @POST
   fun serverStatusRx(
     @Body request: ServerStatusRequest
