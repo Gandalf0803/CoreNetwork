@@ -1,5 +1,5 @@
 # Module CoreNetwork in ViettelPay App
-This is guide setup and using module corenetwork in app ViettelPay
+This is guide setup and usage module corenetwork in app ViettelPay
 ## Table of content
 - [Setup module](#setup-module)
 - [Usage](#usage)
