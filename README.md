@@ -94,7 +94,7 @@ Case call api with RxKotlin
 testApiXml.getListServicesMobileMoneyRx(requestBody)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { response: GenericXMLResponse<MMListServicesResponse> ->
+      .subscribe { response: GenericXmlResponse<MMListServicesResponse> ->
         when (response) {
           is NetworkResponse.Success<*> -> {
             /*do something with response success*/
