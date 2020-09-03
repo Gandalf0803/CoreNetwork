@@ -1,12 +1,8 @@
 # Module CoreNetwork in ViettelPay App
 This is guide setup and usage module corenetwork in app ViettelPay
-## Table of content
-- [Setup module](#setup-module)
-- [Usage](#usage)
-## Setup module 
 1. Implementation module core network in build.gradle of module feature
-```java
-xxx
+```kotlin
+implementation(project(BuildModules.Core.NETWORK))
 ```
 2. Create file API Service in module feature
 ```kotlin
@@ -19,22 +15,22 @@ interface ApiService {
   fun getListServicesMMRx(@Body requestBody: RequestBody): Observable<GenericXmlResponse<MMListServicesResponse>>
 
   // format for call api with REST API(server CDCN)
-  @POST
-  fun serverStatusRx(
-    @Body request: ServerStatusRequest
-  ): Observable<GenericResponse<ServerStatusResponse>>
+  @POST("customer/v1/accounts/change-pin")
+  fun changePinRx(
+    @Body request: ChangePinRequest
+  ): Observable<GenericResponse<ChangePinResponse>>
 
-  @POST
-  suspend fun serverStatusCoroutines(
-    @Body request: ServerStatusRequest
-  ): GenericResponse<ServerStatusResponse>
+  @POST("customer/v1/accounts/change-pin")
+  suspend fun changePinCoroutine(
+    @Body request: ChangePinRequest
+  ): GenericResponse<ChangePinResponse>
 
 }
 ```
 - ``` suspend fun ``` is keyword of kotlin coroutines so if you want to call api with coroutine then you need using keyword suspend before function.
 NOTE: Call API with format request Xml then need using object GenericXmlResponse and the request is JSON then using GenericResponse
 - ```MMListServicesResponse ``` is object response once call api successful(call api with format Xml). It needs to extend XmlBaseResponse
-- ```ServerStatusResponse``` is object response once call api succesful(call api with format Json) and need extend BaseResponse
+- ```ChangePinResponse``` is object response once call api succesful(call api with format Json) and need extend BaseResponse
 
 3. Create file DI or declared dependency for ApiService in your file DI
 ```kotlin
@@ -56,7 +52,6 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     // init something at here
   }
 ```
-## Usage
 Now, You can create files Repository in your module. 
 Declared both instance ApiService REST and SOAP API.
 Differences: testApiXml need by inject with named is "Xml"(We have definition it in the DI file). And testApiJson is by inject default 
@@ -120,11 +115,15 @@ testApiXml.getListServicesMobileMoneyRx(requestBody)
 2. Call API with REST API(server CDCN)
 Declared request object:
 ```kotlin
-val requestObject = ServerStatusRequest("VIETTELPAY", BuildConfig.VERSION_NAME, Toolbox.getUUID(), "android")
+val request = ChangePinRequest(
+                currentPin = password.value.getText(),
+                newPin = firstPassword.value.getText(),
+                confirmPin = secondPassword.value.getText()
+        )
 ```
 Case call api with coroutine:
 ```kotlin
-val response = testApiJson.serverStatusCoroutines(requestObject)
+val response = testApiJson.changePinCoroutine(request)
     when (response) {
       is NetworkResponse.Success<*> -> {
         /*do something with response success*/
@@ -142,10 +141,10 @@ val response = testApiJson.serverStatusCoroutines(requestObject)
 ```
 Case call api with Rx
 ```kotlin
-testApiJson.serverStatusRx(requestObject)
+testApiJson.changePinRx(request)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { response: GenericResponse<ServerStatusResponse> ->
+      .subscribe { response: GenericResponse<ChangePinResponse> ->
         when (response) {
           is NetworkResponse.Success<*> -> {
             /*do something with response success*/
