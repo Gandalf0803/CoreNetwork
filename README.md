@@ -1,6 +1,6 @@
 # Module CoreNetwork in ViettelPay App
 This is guide setup and usage module corenetwork in app ViettelPay
-1. Implementation module core network in build.gradle of module feature
+1. Implementation module core network in build.gradle module feature
 ```kotlin
 implementation(project(BuildModules.Core.NETWORK))
 ```
