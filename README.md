@@ -161,3 +161,21 @@ testApiJson.changePinRx(request)
         }
       }
 ```
+
+```xml
+ <vn.viettelpay.views.VDSToggles
+      android:id="@+id/toggle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal" />
+```
+Kotlin 
+```kotlin
+viewBinding.toggle.isChecked = true
+    viewBinding.toggle.setOnCheckedChangeListener(object : VDSToggles.OnCheckedChangeListener{
+      override fun onCheckedChanged(view: VDSToggles?, isChecked: Boolean) {
+        Toast.makeText(context,"Status is $isChecked",Toast.LENGTH_SHORT).show()
+      }
+    })
+```
+
