@@ -197,11 +197,12 @@ You can usages property in code kotlin.
 ```kotlin
 viewBinding.avatarText.shortName = "ViettelpPay" 
 viewBinding.avatarText.isSelectedAvatar = true/false
-viewBinding.avatarText.avatarUrl = //url http...
-viewBinding.avatarText.avatarRes = // @DrawableRes at here
+viewBinding.avatarText.avatarUrl = "url http at here"
+viewBinding.avatarText.avatarRes = "DrawableRes at here"
 ```
 or handle clickListener avatar you need following code:
-```kotin
+
+```kotlin
 viewBinding.avatarText.onSelectedListener = object : VDSAvatar.OnSelectedListener {
   override fun onSelected(isSelected: Boolean) {
     // do something at here
