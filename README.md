@@ -209,5 +209,28 @@ viewBinding.avatarText.onSelectedListener = object : VDSAvatar.OnSelectedListene
   }
 }
 ```
-
-
+3 Dropdown
+XNL
+```XML
+  <vn.viettelpay.views.dropdown.VDSDropdown
+    android:id="@+id/dropDownDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:dropdownType="date"
+    app:dLabelText="Từ" />
+```
+Kotlin
+You can usages property in code kotlin. 
+```kotlin
+viewBinding.dropDown.content = "ViettelpPay" 
+viewBinding.dropDown.labelText = "Từ"
+```
+or handle clickListener dropdown you need following code:
+```kotlin
+viewBinding.dropDown.onClickListener = object : DropdownClickListener {
+      override fun onClickView() {
+    // do something at here
+    // show bottomsheet/datepicker default of OS
+  }
+}
+```
