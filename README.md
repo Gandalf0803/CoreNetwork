@@ -182,6 +182,7 @@ viewBinding.toggle.isChecked = true
 ```
 
 2. Avatar
+XML
 ```XML
 <vn.viettelpay.views.VDSAvatar
     android:layout_width="wrap_content"
@@ -194,7 +195,7 @@ viewBinding.toggle.isChecked = true
 Kotlin
 You can usages property in code kotlin. 
 ```kotlin
-viewBinding.avatarText.shortName
+viewBinding.avatarText.shortName = "ViettelpPay" 
 viewBinding.avatarText.isSelectedAvatar = true/false
 viewBinding.avatarText.avatarUrl = //url http...
 viewBinding.avatarText.avatarRes = // @DrawableRes at here
