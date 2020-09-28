@@ -162,6 +162,8 @@ testApiJson.changePinRx(request)
       }
 ```
 
+Componets VDS
+1. Toggles
 ```xml
  <vn.viettelpay.views.VDSToggles
       android:id="@+id/toggle"
@@ -178,4 +180,32 @@ viewBinding.toggle.isChecked = true
       }
     })
 ```
+
+2. Avatar
+```XML
+<vn.viettelpay.views.VDSAvatar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="@dimen/tokenSpacing16"
+    app:aAvatarSelected="true"
+    app:aAvatarSize="small" />
+```
+Kotlin
+You can usages property in code kotlin. 
+```kotlin
+viewBinding.avatarText.shortName
+viewBinding.avatarText.isSelectedAvatar = true/false
+viewBinding.avatarText.avatarUrl = //url http...
+viewBinding.avatarText.avatarRes = // @DrawableRes at here
+```
+or handle clickListener avatar you need following code:
+```kotin
+viewBinding.avatarText.onSelectedListener = object : VDSAvatar.OnSelectedListener {
+  override fun onSelected(isSelected: Boolean) {
+    // do something at here
+  }
+}
+```
+
 
