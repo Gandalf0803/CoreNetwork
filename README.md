@@ -210,7 +210,7 @@ viewBinding.avatarText.onSelectedListener = object : VDSAvatar.OnSelectedListene
 }
 ```
 3 Dropdown
-XNL
+XML
 ```XML
   <vn.viettelpay.views.dropdown.VDSDropdown
     android:id="@+id/dropDownDate"
@@ -231,6 +231,48 @@ viewBinding.dropDown.onClickListener = object : DropdownClickListener {
       override fun onClickView() {
     // do something at here
     // show bottomsheet/datepicker default of OS
+  }
+}
+```
+4. Cell
+XML
+```XML
+ <vn.viettelpay.views.cell.VDSCell
+    android:id="@+id/cellText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/tokenSpacing16"
+    app:cellType="description"
+    app:cContentCell="Demo for cell contact is building"
+    app:cIconLeftRes="@drawable/views_icon_avatar_default"
+    app:cTitleCell="ViettelPay 5.0" />
+```
+Kotlin
+You can usages property in code kotlin. 
+```kotlin
+  viewBinding.cell.contentCell = "Nạp tiền ngay vào ViettelPay..."
+  viewBinding.cell.titleCell = "ViettelPay"
+  viewBinding.cell.avatarUrl = "url avatar at here"
+  viewBinding.cell.avatarShortName = "VTP"
+  viewBinding.cell.textButton = "Nạp tiền"
+  viewBinding.cell.iconLeftRes = // DrawableRes at here
+  viewBinding.cell.iconLeftUrl = "url of icon left"
+  viewBinding.cell.iconRightRes =  // DrawableRes at here
+```
+or handle clickListener cell you need following code. 
+Handle onClick cell
+```kotlin
+viewBinding.cellText.onClickListener = object : VDSCellListener() {
+  override fun onClickCell() {
+    Toast.makeText(context, "ViettelPay", Toast.LENGTH_SHORT).show()
+  }
+}
+```
+Handle onClick on buttonRight
+```kotlin
+viewBinding.cellMoney.onClickListener = object : VDSCellListener() {
+  override fun onClickButtonRight() {
+    Toast.makeText(context, "ViettelPay2", Toast.LENGTH_SHORT).show()
   }
 }
 ```
